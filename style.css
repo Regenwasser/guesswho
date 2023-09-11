@@ -115,7 +115,6 @@ body {
 }
 
 /* Apply hover effect only when the button is not disabled */
-.answer-button:not(.disabled):hover,
 .try-again-button:not(.disabled):hover {
     background-color: #d0d0d0; /* Darker shade on hover */
 }
@@ -149,5 +148,4 @@ body {
 embedded-tweet-container {
     text-align: center;
     margin: 0 auto; /* Center horizontally using margin */
-    padding: 20px;
 }
