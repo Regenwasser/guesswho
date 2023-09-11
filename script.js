@@ -4,7 +4,7 @@ const questions = [
     { question: "“Why does ur pp look like u just came?”", answer: "Elon", tweetHTML: `<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Why does ur pp look like u just came?</p>&mdash; Elon Musk (@elonmusk) <a href="https://twitter.com/elonmusk/status/1457497438474981384?ref_src=twsrc%5Etfw">November 7, 2021</a></blockquote>` },
     { question: "“The intolerant left is driving people right”", answer: "Elon", tweetHTML: `<blockquote class="twitter-tweet" data-conversation="none"><p lang="en" dir="ltr">The intolerant left is driving people right</p>&mdash; Elon Musk (@elonmusk) <a href="https://twitter.com/elonmusk/status/1661440573235163138?ref_src=twsrc%5Etfw">May 24, 2023</a></blockquote>` },
     { question: "“I have never seen a thin person drinking diet coke.”", answer: "Trump", tweetHTML: `<blockquote class="twitter-tweet"><p lang="en" dir="ltr">I have never seen a thin person drinking Diet Coke.</p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/257552283850653696?ref_src=twsrc%5Etfw">October 14, 2012</a></blockquote>`  },
-    { question: "“Only thing more insane than a nazi is a nazi on meth”", answer: "Elon", tweetHTML: `<blockquote class="twitter-tweet" data-conversation="none"><p lang="en" dir="ltr">💯 <br><br>Only thing more insane than a nazi is a nazi on meth</p>&mdash; Elon Musk (@elonmusk) <a href="https://twitter.com/elonmusk/status/1692486750348664837?ref_src=twsrc%5Etfw">August 18, 2023</a></blockquote>`  },
+    { question: "“Only thing more insane than a nazi is a nazi on meth”", answer: "Elon", tweetHTML: `<blockquote class="t<blockquote class="twitter-tweet" data-conversation="none"><p lang="en" dir="ltr">💯 <br><br>Only thing more insane than a nazi is a nazi on meth</p>&mdash; Elon Musk (@elonmusk) <a href="https://twitter.com/elonmusk/status/1692486750348664837?ref_src=twsrc%5Etfw">August 18, 2023</a></blockquote>`  },
     { question: "“This platform is hell bent on being the least untrue source of information”", answer: "Elon", tweetHTML: `<blockquote class="twitter-tweet" data-conversation="none" data-dnt="true"><p lang="en" dir="ltr">This platform is hell bent on being the least untrue source of information</p>&mdash; Elon Musk (@elonmusk) <a href="https://twitter.com/elonmusk/status/1655316060508241924?ref_src=twsrc%5Etfw">May 7, 2023</a></blockquote>` },
     { question: "“Every time I speak of the haters and losers I do so with great love and affection. They cannot help the fact that they were born fucked up!”", answer: "Trump", tweetHTML: `<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Every time I speak of the haters and losers I do so with great love and affection. They cannot help the fact that they were born fucked up!</p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/516382177798680576?ref_src=twsrc%5Etfw">September 29, 2014</a></blockquote>` },
     { question: "“It makes me feel so good to hit 'sleazebags' back -- much better than seeing a psychiatrist (which I never have!)”", answer: "Trump", tweetHTML: `<blockquote class="twitter-tweet"><p lang="en" dir="ltr">It makes me feel so good to hit &quot;sleazebags&quot; back -- much better than seeing a psychiatrist (which I never have!)</p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/270558656502837248?ref_src=twsrc%5Etfw">November 19, 2012</a></blockquote> ` },
@@ -173,10 +173,9 @@ function showWrongPage(question) {
 }
 
 function endGame() {
-    questionText.textContent = "Game Over";
-    resultContainer.textContent = `Your final score is ${score} out of ${questions.length}`;
-    scoreDisplay.style.display = "block"; // Show the score display
-
+    questionText.textContent = `Game Over – your final score is ${score} out of ${questions.length}`;
+    scoreDisplay.style.display = "none"; // Hide the score display
+    hideAnswerButtons()
     // Check if the current question index is equal to the total number of questions
     if (currentQuestionIndex === questions.length) {
         // Create a <div> element to contain the "Try Again" button
@@ -195,11 +194,12 @@ function restartGame() {
     currentQuestionIndex = 0;
     score = 0;
     scoreDisplay.textContent = "";
-    tryAgainButton.style.display = "block"; // Show the "Try Again" button
+    tryAgainButton.style.display = "none"; // Hide the "Try Again" button
 
     // Reset button styles to default
     document.querySelectorAll(".answer-button").forEach((button) => {
         button.classList.remove("correct-answer", "wrong-answer");
+        button.disabled = false; // Reset the disabled state
     });
 
     showQuestion(); // Restart the game by showing the first question

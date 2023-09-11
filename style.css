@@ -141,11 +141,11 @@ body {
     color: #333;
 }
 
-.twitter-tweet {
-    margin: 0 auto; /* Center horizontally using margin */
-}
-
+.twitter-tweet,
 embedded-tweet-container {
+    max-width: 95%; /* Adjust the maximum width as needed */
+    padding: 8px; /* Add padding around the tweet */
+    box-sizing: border-box; /* Include padding in the width calculation */
     text-align: center;
     margin: 0 auto; /* Center horizontally using margin */
 }
